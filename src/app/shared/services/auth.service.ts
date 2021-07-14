@@ -1,4 +1,3 @@
-// import { HttpClientModule } from '@angular/core/HttpClientModule';
 import { Injectable } from "@angular/core";
 import { User } from "../interfaces";
 import {HttpClient, HttpClientModule} from "@angular/common/http";

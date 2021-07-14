@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <mat-card class="user-card">
+        <mat-card-header>
+          <mat-card-title>{{user?.first_name}} {{user?.last_name}}</mat-card-title>
+          <mat-card-subtitle>{{user?.email}}</mat-card-subtitle>
+        </mat-card-header>
+        <div mat-card-image class="d-flex ml-auto">
+          <img mat-card-image src="{{user?.avatar}}" alt="{{user?.first_name}}">
+        </div>
+        <mat-card-content></mat-card-content>
+        <mat-card-actions class="d-flex">
+          <button
+            mat-flat-button
+            color="primary"
+            (click)="openForm()"
+          >
+            Edit
+          </button>
+          <button
+            mat-flat-button
+            color="warn"
+            (click)="handleDeleteUser()"
+          >
+            Delete
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
