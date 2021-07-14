@@ -1,0 +1,9 @@
+header {
+  background: #f8f9fa;
+  & .navbar {
+    border: none;
+    & .nav-link {
+      font-size: 1.5rem;
+    }
+  }
+}
