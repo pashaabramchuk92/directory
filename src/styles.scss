@@ -293,8 +293,22 @@ table th {
     }
   }
 }
+
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.validator {
+  & small {
+    color: red;
+    margin: -.5rem auto .5rem;
+  }
+}
+
+main {
+  min-height: calc(100% - 64px);
+}
+
+

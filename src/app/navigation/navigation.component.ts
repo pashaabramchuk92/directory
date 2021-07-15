@@ -10,15 +10,12 @@ import {AuthService} from "../shared/services/auth.service";
 })
 export class NavigationComponent implements OnInit {
 
-
-
   constructor(
     private auth: AuthService,
     private router: Router
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   isShow() {
     return this.auth.isAuthenticated();

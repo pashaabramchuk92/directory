@@ -1,33 +1,30 @@
-<header>
+<header class="bg-primary">
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container">
+        <mat-toolbar class="bg-transparent">
+          <nav class="navbar navbar-expand navbar-light m-0">
             <ul class="navbar-nav d-flex justify-content-between w-100">
               <li class="nav-item">
-                <a class="nav-link" routerLink="/">Главная</a>
+                <a class="nav-link text-white" routerLink="/">Главная</a>
               </li>
               <div class="d-flex">
-
                 <li class="nav-item" *ngIf="!isShow()" [routerLink]="['/login']">
-                  <a class="nav-link" routerLink="/login">Войти</a>
+                  <a class="nav-link text-white" routerLink="/login">Войти</a>
                 </li>
                 <li class="nav-item" *ngIf="!isShow()" [routerLink]="['/registration']">
-                  <a class="nav-link" routerLink="/registration">Регистрация</a>
+                  <a class="nav-link text-white" routerLink="/registration">Регистрация</a>
                 </li>
-
-<!--                <li class="nav-item" *ngIf="isShow()" [routerLink]="['/users']">-->
-<!--                  <span class="nav-link">Привет, user</span>-->
-<!--                </li>-->
                 <li class="nav-item" *ngIf="isShow()" [routerLink]="['/users']">
-                  <a class="nav-link" routerLink="/login" (click)="logout()">Выйти</a>
+                  <a class="nav-link text-white" routerLink="/login" (click)="logout()">Выйти</a>
                 </li>
               </div>
             </ul>
-          </div>
-        </nav>
+          </nav>
+        </mat-toolbar>
       </div>
     </div>
   </div>
 </header>
+
+

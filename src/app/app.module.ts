@@ -20,6 +20,8 @@ import {RegistrationComponent} from "./registation/registration.component";
 import { MainPageComponent } from './main-page/main-page.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -31,21 +33,23 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     UserPageComponent,
     CreateDialogComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        NgbModule,
-        FormsModule,
-        HttpClientModule,
-        FormsModule,
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        MatPaginatorModule,
-        MatButtonModule,
-        MatDialogModule,
-        MatCardModule,
-        MatProgressSpinnerModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    FormsModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatToolbarModule,
+    MatIconModule
+  ],
   providers: [AuthService, MatDialogConfig],
   bootstrap: [AppComponent]
 })
