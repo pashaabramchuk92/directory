@@ -10,7 +10,7 @@ import {AuthService} from "../shared/services/auth.service";
 })
 export class NavigationComponent implements OnInit {
 
-  isShow: any = this.auth.isAuthenticated
+
 
   constructor(
     private auth: AuthService,
@@ -18,7 +18,10 @@ export class NavigationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  }
 
+  isShow() {
+    return this.auth.isAuthenticated();
   }
 
   logout() {

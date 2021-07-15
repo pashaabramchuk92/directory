@@ -1,7 +1,10 @@
+<div *ngIf="preloader" class="preloader">
+  <mat-spinner></mat-spinner>
+</div>
 <div class="container">
-  <div class="row">
-    <div class="col-4">
-      <mat-card class="user-card">
+  <div class="row justify-content-between">
+    <div class="col-lg-4">
+      <mat-card class="user-card" *ngIf="!preloader">
         <mat-card-header>
           <mat-card-title>{{user?.first_name}} {{user?.last_name}}</mat-card-title>
           <mat-card-subtitle>{{user?.email}}</mat-card-subtitle>
@@ -15,18 +18,63 @@
             mat-flat-button
             color="primary"
             (click)="openForm()"
+            [disabled]="loading"
           >
-            Edit
+            Редактировать
           </button>
           <button
             mat-flat-button
             color="warn"
             (click)="handleDeleteUser()"
+            [disabled]="loading"
           >
-            Delete
+            Удалить
           </button>
         </mat-card-actions>
       </mat-card>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="edit-form" *ngIf="isShow">
+        <h3 class="font-weight-bold">Редактирование профиля</h3>
+        <form [formGroup]="editForm">
+          <div class="form-lg-group">
+            <label for="name">Имя:</label>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              placeholder="{{user?.first_name}} {{user?.last_name}}"
+              formControlName="userName"
+            >
+          </div>
+          <div class="form-group">
+            <label for="job">Должность:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="job"
+              placeholder="Должность..."
+              formControlName="job"
+            >
+          </div>
+        </form>
+
+        <div>
+          <div class="form-group w-100 d-flex justify-content-between">
+            <button
+              mat-flat-button
+              color="primary"
+              (click)="handleUpdateUser()"
+              [disabled]="loading || editForm.invalid"
+            >
+              Обновить
+            </button>
+            <button mat-flat-button color="warn" (click)="closeForm()">Закрыть</button>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>

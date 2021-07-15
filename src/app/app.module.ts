@@ -16,36 +16,36 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {AuthService} from "./shared/services/auth.service";
 import {LoginComponent} from "./login/login.component";
-import {RegistationComponent} from "./registation/registation.component";
+import {RegistrationComponent} from "./registation/registration.component";
 import { MainPageComponent } from './main-page/main-page.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { EditDialogComponent } from './shared/edit-dialog/edit-dialog.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegistationComponent,
+    RegistrationComponent,
     MainPageComponent,
     NavigationComponent,
     UserPageComponent,
-    CreateDialogComponent,
-    EditDialogComponent
+    CreateDialogComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    FormsModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatCardModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgbModule,
+        FormsModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatCardModule,
+        MatProgressSpinnerModule
+    ],
   providers: [AuthService, MatDialogConfig],
   bootstrap: [AppComponent]
 })

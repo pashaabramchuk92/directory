@@ -9,7 +9,7 @@ const baseUrl = 'https://reqres.in/api';
 @Injectable()
 export class AuthService {
 
-  get token(): string | null {
+  get token(): any {
     return localStorage.getItem('token');
   }
 
@@ -24,8 +24,14 @@ export class AuthService {
     localStorage.clear()
   }
 
-  isAuthenticated(): boolean {
-    return !!this.token;
+  isAuthenticated(): boolean | null {
+    const token = localStorage.getItem('token');
+
+    if(token) {
+      return true
+    }
+
+    return null;
   }
 
   private setToken(response: any) {

@@ -17,10 +17,11 @@ export class MainPageComponent implements OnInit {
 
   workers: Worker[] | undefined;
 
-  length: number = 12;
-  pageSize: number = 6;
+  length: number = 0;
+  pageSize: number = 0;
   currPage: number = 0;
-  totalPages: number = 2;
+
+  loadNextPage: boolean = false;
 
   constructor(
     private httpService: HttpService,
@@ -30,12 +31,16 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
     this.httpService.getWorkers(this.currPage + 1)
       .subscribe((response: any) => {
+        console.log(response)
         this.workers = response.data;
         this.length = response.total;
+        this.pageSize = response.per_page;
     });
   }
 
   handlePageEvent(event: PageEvent) {
+    this.loadNextPage = true;
+
     this.length = event.length;
     this.pageSize = event.pageSize;
     this.currPage = event.pageIndex;
@@ -43,6 +48,7 @@ export class MainPageComponent implements OnInit {
     this.httpService.getWorkers(this.currPage + 1)
       .subscribe((response: any) => {
         this.workers = response.data;
+        this.loadNextPage = false;
       });
   }
 

@@ -1,18 +1,20 @@
-<div class="container">
+<div class="container" style="position: relative">
   <div class="row">
     <div class="col-12">
-      <h1 class="text-center">{{title}}</h1>
+      <h1 class="text-center mt-4 font-weight-bold">{{title}}</h1>
     </div>
   </div>
 
-  <div class="row">
+  <mat-spinner *ngIf="!workers" class="pre-loader"></mat-spinner>
+
+  <div class="row" *ngIf="workers">
     <div class="col-1">
       <button
         mat-flat-button
         color="primary"
         (click)="openDialog()"
       >
-        add new
+        Добавить нового сотрудника
       </button>
     </div>
   </div>
@@ -26,22 +28,29 @@
       >
         <img src="{{worker.avatar}}" alt="{{worker.first_name}}" class="w-auto h-auto">
         <div class="d-flex w-100 justify-content-between align-items-center flex-column">
-          <h5 class="mb-1">{{worker.first_name}} {{worker.last_name}}</h5>
+          <h3 class="mb-1">{{worker.first_name}} {{worker.last_name}}</h3>
           <p class="mb-1">{{worker.email}}</p>
         </div>
       </a>
     </div>
   </div>
-  <div class="row mt-4">
-    <div class="col-12">
-      <mat-paginator
-        (page)="handlePageEvent($event)"
-        [length]="length"
-        [pageSize]="pageSize"
-        [pageIndex]="currPage"
-        [hidePageSize]="true"
-      >
-      </mat-paginator>
+  <div class="row mt-4 align-items-center" *ngIf="workers">
+    <div class="col-4 offset-8">
+      <div class="d-flex align-items-center justify-content-end">
+        <mat-spinner
+          class="d-flex ml-auto"
+          diameter="25"
+          color="warn"
+          *ngIf="loadNextPage"
+        ></mat-spinner>
+        <mat-paginator
+          (page)="handlePageEvent($event)"
+          [length]="length"
+          [pageSize]="pageSize"
+          [pageIndex]="currPage"
+          [hidePageSize]="true"
+        ></mat-paginator>
+      </div>
     </div>
   </div>
 </div>

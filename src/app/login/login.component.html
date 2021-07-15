@@ -1,48 +1,54 @@
-<div class="row justify-content-center">
-  <div class="col-6">
-    <h2 class="login__title text-center">Sign In</h2>
-
-    <form [formGroup]="form" (ngSubmit)="submit()">
-      <div class="form-lg-group">
-        <label for="email">Email:</label>
-        <input
-          type="text"
-          id="email"
-          class="form-control"
-          placeholder="yours email"
-          formControlName="email"
-        >
-        <!--    <div *ngIf="form.get('email').invalid" class="validator">-->
-        <!--      <small class="form-text text-muted">some error</small>-->
-        <!--    </div>-->
-      </div>
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input
-          type="password"
-          class="form-control"
-          id="password"
-          placeholder="yours password"
-          formControlName="password"
-        >
-        <!-- <div *ngIf="form.get('password').invalid" class="validator">
-          <small class="form-text text-muted">some error</small>
-        </div> -->
-      </div>
-      <div class="form-group">
-        <button
-          type="submit"
-          class="btn btn-primary w-100"
-          [disabled]="form.invalid"
-        >
-          Sign in
-        </button>
-      </div>
-      <div class="form-group">
-        <p>Don't have an account?
-          <a routerLink="/registration" class="btn btn-primary">Sign up!</a>
-        </p>
-      </div>
-    </form>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <h2 class="login__title text-center mt-4">Войдите в учетную запись!</h2>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="form-lg-group">
+          <label for="email">Почта:</label>
+          <input
+            type="text"
+            id="email"
+            class="form-control"
+            placeholder="Почта..."
+            formControlName="email"
+          >
+          <div class="validator" *ngIf="login">
+            <small class="form-text">
+              {{login.errors?.email ? 'Неправильный формат почты' : ''}}
+              {{login.errors?.required ? 'Почта обязательна' : ''}}
+            </small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Пароль:</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Пароль..."
+            formControlName="password"
+          >
+          <div *ngIf="password" class="validator">
+            <small class="form-text">
+              {{password.errors?.required ? 'Пароль обязателен' : ''}}
+            </small>
+          </div>
+        </div>
+        <div class="form-group">
+          <button
+            type="submit"
+            class="btn btn-primary w-100"
+            [disabled]="loading || form.invalid"
+          >
+            Войти
+          </button>
+        </div>
+        <div class="form-group">
+          <p>Не зарегистрированы?
+            <a routerLink="/registration" class="btn btn-primary">Регистрация</a>
+          </p>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

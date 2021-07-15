@@ -6,17 +6,22 @@
           <div class="container">
             <ul class="navbar-nav d-flex justify-content-between w-100">
               <li class="nav-item">
-                <a class="nav-link" routerLink="/">Home</a>
+                <a class="nav-link" routerLink="/">Главная</a>
               </li>
               <div class="d-flex">
-                <li class="nav-item">
-                  <a class="nav-link" routerLink="/login">Sing in</a>
+
+                <li class="nav-item" *ngIf="!isShow()" [routerLink]="['/login']">
+                  <a class="nav-link" routerLink="/login">Войти</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" routerLink="/registration">Sign up</a>
+                <li class="nav-item" *ngIf="!isShow()" [routerLink]="['/registration']">
+                  <a class="nav-link" routerLink="/registration">Регистрация</a>
                 </li>
-                <li>
-                  <a class="nav-link" routerLink="/login" (click)="logout()">Exit</a>
+
+<!--                <li class="nav-item" *ngIf="isShow()" [routerLink]="['/users']">-->
+<!--                  <span class="nav-link">Привет, user</span>-->
+<!--                </li>-->
+                <li class="nav-item" *ngIf="isShow()" [routerLink]="['/users']">
+                  <a class="nav-link" routerLink="/login" (click)="logout()">Выйти</a>
                 </li>
               </div>
             </ul>

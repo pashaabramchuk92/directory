@@ -33,4 +33,8 @@ export class HttpService {
   updateUser(id: any, body: UserBody): Observable<any> {
     return this.http.patch(`${baseUrl}/${id}`, body)
   }
+
+  registerUser(body: User) {
+    return this.http.post(`${baseUrl}/register`, body);
+  }
 }
