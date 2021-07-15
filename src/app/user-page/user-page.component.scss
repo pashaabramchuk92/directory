@@ -1,6 +1,14 @@
+.preloader {
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .user-card {
   max-width: 400px;
-  margin: 40px auto 0;
+  margin-top: 40px;
   & .mat-card-header {
     justify-content: center;
     text-align: center;
@@ -12,4 +20,8 @@
   & .mat-card-actions {
     justify-content: space-between;
   }
+}
+
+.edit-form {
+  margin-top: 40px;
 }

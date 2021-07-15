@@ -1,9 +1,9 @@
-import {Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {HttpService} from "../shared/services/http.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Worker} from "../shared/interfaces";
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {EditDialogComponent} from "../shared/edit-dialog/edit-dialog.component";
+import {UserBody, Worker} from "../shared/interfaces";
+import {MatDialog} from "@angular/material/dialog";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-user-page',
@@ -12,31 +12,89 @@ import {EditDialogComponent} from "../shared/edit-dialog/edit-dialog.component";
 })
 export class UserPageComponent implements OnInit {
 
+  preloader: boolean = true;
+  loading: boolean = false;
+
   id = this.route.snapshot.params.id;
 
-  user?: Worker;
+  editForm: FormGroup = new FormGroup({});
+  userBody: UserBody | undefined;
+
+  user: Worker | undefined;
+
+  isShow: boolean = false;
 
   constructor(
     private httpService: HttpService,
     private route: ActivatedRoute,
-    private router: Router,
-    private dialog: MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
+
     this.httpService.getWorker(this.id).subscribe(response => {
-      this.user = response.data
+      this.user = response.data;
+      this.preloader = false;
     });
+
+    this.editForm = new FormGroup({
+      userName: new FormControl(''),
+      job: new FormControl('')
+      //@ts-ignore
+    }, {validators: this.validateUpdateUser});
+  }
+
+  validateUpdateUser(g: FormGroup) {
+    return (
+      //@ts-ignore
+      g.get('userName').value && g.get('userName').value.trim().length > 0 ||
+      //@ts-ignore
+      g.get('job').value && g.get('job').value.trim().length > 0 ? null : {'mismatch': true}
+    );
+  };
+
+  openForm() {
+    this.isShow = true;
+  }
+
+  closeForm() {
+    this.isShow = false;
+    this.editForm.reset();
   }
 
   handleDeleteUser() {
+    this.loading = true;
     this.httpService.deleteUser(this.id).subscribe(() => {
       console.log(`user with id ${this.id} delete`)
       this.router.navigate(['/users']);
+      this.loading = false;
+    });
+
+    this.httpService.getWorker(this.id).subscribe(response => {
+      this.user = response.data;
     });
   }
 
-  openForm() {
-    this.dialog.open(EditDialogComponent, {data: { id: this. id}})
+  handleUpdateUser() {
+    this.loading = true;
+
+    this.userBody = {
+      userName: this.editForm.value.userName,
+      job: this.editForm.value.job
+    }
+
+    if(this.userBody.userName || this.userBody.job) {
+      this.httpService.updateUser(this.id, this.userBody)
+        .subscribe(() => {
+          console.log(`user with id ${this.id} updated.`)
+          this.editForm.reset();
+          this.loading = false;
+        });
+
+      this.httpService.getWorker(this.id).subscribe(response => {
+        this.user = response.data;
+      });
+    }
   }
+
 }

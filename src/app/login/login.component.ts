@@ -11,6 +11,8 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
+  loading: boolean = false;
+
   user: User = {
     email: "eve.holt@reqres.in",
     password: "cityslicka"
@@ -31,6 +33,9 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
+
+    this.loading = true;
+
     if(this.form.invalid) {
       return
     }
@@ -42,9 +47,9 @@ export class LoginComponent implements OnInit {
 
     this.auth.login(user).subscribe(() => {
       this.form.reset()
-      this.router.navigate(['/'])
-      }
-    )
+      this.router.navigate(['/']);
+      this.loading = false;
+    });
   }
 
 }
