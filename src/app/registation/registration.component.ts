@@ -29,11 +29,13 @@ export class RegistrationComponent implements OnInit {
     });
 
     this.passwords = new FormGroup({
-      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      repeat: new FormControl('', [Validators.required, Validators.minLength(6)])
+      password: new FormControl('123', [Validators.required, Validators.minLength(6)]),
+      repeat: new FormControl('1234', [Validators.required, Validators.minLength(6)])
       //@ts-ignore
     }, {validators: this.passwordMatchValidator});
 
+
+    console.log(this.pass)
   }
 
   passwordMatchValidator(g: FormGroup) {
@@ -62,10 +64,12 @@ export class RegistrationComponent implements OnInit {
       console.log(response);
       this.router.navigate(['/login']);
       this.loading = false;
+      this.passwords.reset();
+      this.signUpForm.reset();
     });
-
-    // this.signUpForm.reset();
-    // this.passwords.reset();
   };
+
+  get logUser() { return this.signUpForm.get('email') }
+  get pass() { return this.passwords }
 
 }

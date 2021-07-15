@@ -11,6 +11,12 @@
           placeholder="почта..."
           formControlName="email"
         >
+        <div *ngIf="logUser" class="validator">
+          <small class="form-text">
+            {{logUser.errors?.required ? 'Почта обязательна' : ''}}
+            {{logUser.errors?.email ? 'Неправильный формат почты' : ''}}
+          </small>
+        </div>
       </div>
       <div class="form-group" [formGroup]="passwords">
         <label for="password">Пароль:</label>
@@ -21,6 +27,12 @@
           placeholder="***"
           formControlName="password"
         >
+        <div *ngIf="pass" class="validator">
+          <small class="form-text">
+            {{pass.controls.password.errors?.required ? 'Пароль обязателен' : ''}}
+            {{pass.controls.password.errors?.minlength ? 'Пароль должен быть не менее 6 символов' : ''}}
+          </small>
+        </div>
       </div>
       <div class="form-group" [formGroup]="passwords">
         <label for="password-repeat">Повторите пароль:</label>
@@ -31,6 +43,13 @@
           placeholder="***"
           formControlName="repeat"
         >
+        <div *ngIf="pass" class="validator">
+          <small class="form-text">
+            {{pass.controls.repeat.errors?.required ? 'Пароль обязателен' : ''}}
+            {{pass.controls.repeat.errors?.minlength ? 'Пароль должен быть не менее 6 символов' : ''
+              || pass.errors?.mismatch ? 'Введенные пароли не совпадают' : ''}}
+          </small>
+        </div>
       </div>
       <div class="form-group">
         <button
