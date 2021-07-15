@@ -31,7 +31,6 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
     this.httpService.getWorkers(this.currPage + 1)
       .subscribe((response: any) => {
-        console.log(response)
         this.workers = response.data;
         this.length = response.total;
         this.pageSize = response.per_page;

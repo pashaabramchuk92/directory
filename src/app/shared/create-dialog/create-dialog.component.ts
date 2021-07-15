@@ -39,12 +39,13 @@ export class CreateDialogComponent implements OnInit {
       job: this.addForm.value.job
     }
 
-    this.httpService.createUser(this.userBody).subscribe(response => {
-      console.log(response);
-
+    this.httpService.createUser(this.userBody).subscribe(() => {
       this.loading = false;
       this.addForm.reset();
     });
 
   }
+
+  get userName() { return this.addForm.get('userName') }
+  get job() { return this.addForm.get('job') }
 }

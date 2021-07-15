@@ -1,17 +1,17 @@
-<div class="container" style="position: relative">
+<div class="container">
   <div class="row">
     <div class="col-12">
-      <h1 class="text-center mt-4 font-weight-bold">{{title}}</h1>
+      <h1 class="text-center mat-display-1">{{title}}</h1>
     </div>
   </div>
 
   <mat-spinner *ngIf="!workers" class="pre-loader"></mat-spinner>
 
   <div class="row" *ngIf="workers">
-    <div class="col-1">
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
       <button
+        class="bg-primary"
         mat-flat-button
-        color="primary"
         (click)="openDialog()"
       >
         Добавить нового сотрудника
@@ -19,8 +19,8 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-4 text-center" *ngFor="let worker of workers">
+  <div class="row justify-content-between">
+    <div class="col-lg-4 col-md-6 col-sm-12 text-center" *ngFor="let worker of workers">
       <a
         routerLink="{{worker.id}}"
         class="list-group-item list-group-item-action mt-4 border rounded"
@@ -34,8 +34,9 @@
       </a>
     </div>
   </div>
+
   <div class="row mt-4 align-items-center" *ngIf="workers">
-    <div class="col-4 offset-8">
+    <div class="col-md-4 col-sm-8 offset-md-8 offset-sm-4">
       <div class="d-flex align-items-center justify-content-end">
         <mat-spinner
           class="d-flex ml-auto"
@@ -44,6 +45,7 @@
           *ngIf="loadNextPage"
         ></mat-spinner>
         <mat-paginator
+          class="bg-transparent"
           (page)="handlePageEvent($event)"
           [length]="length"
           [pageSize]="pageSize"

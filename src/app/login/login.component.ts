@@ -30,8 +30,6 @@ export class LoginComponent implements OnInit {
       email: new FormControl(this.user.email, [Validators.email, Validators.required]),
       password: new FormControl(this.user.password, [Validators.required])
     });
-
-    console.log(this.login)
   }
 
   submit() {

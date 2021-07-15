@@ -5,7 +5,7 @@ import { User } from "../shared/interfaces";
 import {HttpService} from "../shared/services/http.service";
 
 @Component({
-  selector: 'app-registation',
+  selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
@@ -29,8 +29,8 @@ export class RegistrationComponent implements OnInit {
     });
 
     this.passwords = new FormGroup({
-      password: new FormControl('123', [Validators.required, Validators.minLength(6)]),
-      repeat: new FormControl('1234', [Validators.required, Validators.minLength(6)])
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      repeat: new FormControl('', [Validators.required, Validators.minLength(6)])
       //@ts-ignore
     }, {validators: this.passwordMatchValidator});
 

@@ -1,66 +1,68 @@
-<div class="row justify-content-center">
-  <div class="col-6">
-    <h2 class="login__title text-center mt-4">Регистрация</h2>
-    <form [formGroup]="signUpForm">
-      <div class="form-group">
-        <label for="email">Почта:</label>
-        <input
-          type="email"
-          class="form-control"
-          id="email"
-          placeholder="почта..."
-          formControlName="email"
-        >
-        <div *ngIf="logUser" class="validator">
-          <small class="form-text">
-            {{logUser.errors?.required ? 'Почта обязательна' : ''}}
-            {{logUser.errors?.email ? 'Неправильный формат почты' : ''}}
-          </small>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-xl-6 col-lg-8 col-sm-10">
+      <h2 class="login__title text-center">Регистрация</h2>
+      <form [formGroup]="signUpForm">
+        <div class="form-group">
+          <label for="email">Почта:</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="почта..."
+            formControlName="email"
+          >
+          <div class="validator" *ngIf="logUser && (logUser.touched || logUser.dirty)">
+            <small class="form-text">
+              {{logUser.errors?.required ? 'Почта обязательна' : ''}}
+              {{logUser.errors?.email ? 'Неправильный формат почты' : ''}}
+            </small>
+          </div>
         </div>
-      </div>
-      <div class="form-group" [formGroup]="passwords">
-        <label for="password">Пароль:</label>
-        <input
-          type="password"
-          class="form-control"
-          id="password"
-          placeholder="***"
-          formControlName="password"
-        >
-        <div *ngIf="pass" class="validator">
-          <small class="form-text">
-            {{pass.controls.password.errors?.required ? 'Пароль обязателен' : ''}}
-            {{pass.controls.password.errors?.minlength ? 'Пароль должен быть не менее 6 символов' : ''}}
-          </small>
+        <div class="form-group" [formGroup]="passwords">
+          <label for="password">Пароль:</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="пароль..."
+            formControlName="password"
+          >
+          <div class="validator" *ngIf="pass && (pass.touched || pass.dirty)">
+            <small class="form-text">
+              {{pass.controls.password.errors?.required ? 'Пароль обязателен' : ''}}
+              {{pass.controls.password.errors?.minlength ? 'Пароль должен быть не менее 6 символов' : ''}}
+            </small>
+          </div>
         </div>
-      </div>
-      <div class="form-group" [formGroup]="passwords">
-        <label for="password-repeat">Повторите пароль:</label>
-        <input
-          type="password"
-          class="form-control"
-          id="password-repeat"
-          placeholder="***"
-          formControlName="repeat"
-        >
-        <div *ngIf="pass" class="validator">
-          <small class="form-text">
-            {{pass.controls.repeat.errors?.required ? 'Пароль обязателен' : ''}}
-            {{pass.controls.repeat.errors?.minlength ? 'Пароль должен быть не менее 6 символов' : ''
-              || pass.errors?.mismatch ? 'Введенные пароли не совпадают' : ''}}
-          </small>
+        <div class="form-group" [formGroup]="passwords">
+          <label for="password-repeat">Повторите пароль:</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password-repeat"
+            placeholder="пароль..."
+            formControlName="repeat"
+          >
+          <div class="validator" *ngIf="pass && (pass.touched || pass.dirty)">
+            <small class="form-text">
+              {{pass.controls.repeat.errors?.required ? 'Пароль обязателен' : ''}}
+              {{pass.controls.repeat.errors?.minlength ? 'Пароль должен быть не менее 6 символов' : ''
+            || pass.errors?.mismatch ? 'Введенные пароли не совпадают' : ''}}
+            </small>
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <button
-          type="submit"
-          class="btn btn-primary w-100"
-          (click)="submit()"
-          [disabled]="loading || signUpForm.invalid || passwords.invalid"
-        >
-          Зарегистрироваться
-        </button>
-      </div>
-    </form>
+        <div class="form-group">
+          <button
+            type="submit"
+            class="btn btn-primary w-100"
+            (click)="submit()"
+            [disabled]="loading || signUpForm.invalid || passwords.invalid"
+          >
+            Зарегистрироваться
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
