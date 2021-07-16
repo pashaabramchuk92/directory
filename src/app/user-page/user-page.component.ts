@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, Optional} from '@angular/core';
 import { HttpService } from "../shared/services/http.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { UserBody, User } from "../shared/interfaces";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import {MainPageComponent} from "../main-page/main-page.component";
 
 @Component({
   selector: 'app-user-page',
@@ -41,6 +42,7 @@ export class UserPageComponent implements OnInit {
       job: new FormControl('')
       //@ts-ignore
     }, {validators: this.validateUpdateUser});
+
   }
 
   validateUpdateUser(g: FormGroup) {
@@ -69,9 +71,7 @@ export class UserPageComponent implements OnInit {
       this.loading = false;
     });
 
-    this.httpService.getWorker(this.id).subscribe(response => {
-      this.user = response.data;
-    });
+    this.httpService.getWorkers();
   }
 
   handleUpdateUser() {

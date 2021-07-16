@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {PageEvent} from '@angular/material/paginator';
-import {MatDialog} from "@angular/material/dialog";
+import {Component, OnInit, Output} from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
+import { MatDialog } from "@angular/material/dialog";
 
-import {HttpService} from "../shared/services/http.service";
+import { HttpService } from "../shared/services/http.service";
 import { User } from "../shared/interfaces";
-import {CreateDialogComponent} from "../shared/create-dialog/create-dialog.component";
+import { CreateDialogComponent } from "../shared/create-dialog/create-dialog.component";
 
 @Component({
   selector: 'app-main-page',
@@ -52,7 +52,9 @@ export class MainPageComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(CreateDialogComponent);
+    this.dialog.open(CreateDialogComponent, {
+      data: { page: this.currPage + 1 }
+    });
   }
 
 }

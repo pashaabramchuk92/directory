@@ -13,7 +13,7 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-  getWorkers(page: number): Observable<any> {
+  getWorkers(page?: number): Observable<any> {
     return this.http.get(`${baseUrl}?page=${page}`);
   }
 

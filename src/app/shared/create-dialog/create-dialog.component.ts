@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { HttpService } from "../services/http.service";
 import { UserBody } from "../interfaces";
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-modal-dialog',
@@ -16,14 +17,15 @@ export class CreateDialogComponent implements OnInit {
   userBody: UserBody | undefined;
 
   constructor(
-    private httpService: HttpService
+    private httpService: HttpService,
+    @Inject(MAT_DIALOG_DATA) public data: number
   ) { }
 
   ngOnInit(): void {
     this.addForm = new FormGroup({
       userName: new FormControl('', [Validators.required]),
       job: new FormControl('', [Validators.required])
-    })
+    });
   }
 
   handleCreateUser() {
@@ -43,6 +45,8 @@ export class CreateDialogComponent implements OnInit {
       this.loading = false;
       this.addForm.reset();
     });
+
+    this.httpService.getWorkers(this.data);
 
   }
 
