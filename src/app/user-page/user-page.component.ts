@@ -1,9 +1,8 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {HttpService} from "../shared/services/http.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {UserBody, Worker} from "../shared/interfaces";
-import {MatDialog} from "@angular/material/dialog";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { HttpService } from "../shared/services/http.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { UserBody, User } from "../shared/interfaces";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-user-page',
@@ -20,7 +19,7 @@ export class UserPageComponent implements OnInit {
   editForm: FormGroup = new FormGroup({});
   userBody: UserBody | undefined;
 
-  user: Worker | undefined;
+  user: User | undefined;
 
   isShow: boolean = false;
 

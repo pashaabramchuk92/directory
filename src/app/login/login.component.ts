@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { User } from 'src/app/shared/interfaces';
+import { UserLogin } from 'src/app/shared/interfaces';
 import {AuthService} from "../shared/services/auth.service";
 import {Router} from "@angular/router";
 
@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   loading: boolean = false;
 
-  user: User = {
+  user: UserLogin = {
     email: "eve.holt@reqres.in",
     password: "cityslicka"
   };
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       return
     }
 
-    const user: User = {
+    const user: UserLogin = {
       email: this.form.value.email,
       password: this.form.value.password
     }

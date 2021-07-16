@@ -5,9 +5,9 @@
     </div>
   </div>
 
-  <mat-spinner *ngIf="!workers" class="pre-loader"></mat-spinner>
+  <mat-spinner *ngIf="!users" class="pre-loader"></mat-spinner>
 
-  <div class="row" *ngIf="workers">
+  <div class="row" *ngIf="users">
     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
       <button
         class="bg-primary"
@@ -20,22 +20,22 @@
   </div>
 
   <div class="row justify-content-between">
-    <div class="col-lg-4 col-md-6 col-sm-12 text-center" *ngFor="let worker of workers">
+    <div class="col-lg-4 col-md-6 col-sm-12 text-center" *ngFor="let user of users">
       <a
-        routerLink="{{worker.id}}"
+        routerLink="{{user.id}}"
         class="list-group-item list-group-item-action mt-4 border rounded"
         aria-current="true"
       >
-        <img src="{{worker.avatar}}" alt="{{worker.first_name}}" class="w-auto h-auto">
+        <img src="{{user.avatar}}" alt="{{user.first_name}}" class="w-auto h-auto">
         <div class="d-flex w-100 justify-content-between align-items-center flex-column">
-          <h3 class="mb-1">{{worker.first_name}} {{worker.last_name}}</h3>
-          <p class="mb-1">{{worker.email}}</p>
+          <h3 class="mb-1">{{user.first_name}} {{user.last_name}}</h3>
+          <p class="mb-1">{{user.email}}</p>
         </div>
       </a>
     </div>
   </div>
 
-  <div class="row mt-4 align-items-center" *ngIf="workers">
+  <div class="row mt-4 align-items-center" *ngIf="users">
     <div class="col-md-4 col-sm-8 offset-md-8 offset-sm-4">
       <div class="d-flex align-items-center justify-content-end">
         <mat-spinner

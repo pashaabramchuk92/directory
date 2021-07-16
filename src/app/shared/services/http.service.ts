@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
-import {User, UserBody} from "../interfaces";
+import {UserLogin, UserBody} from "../interfaces";
 
 const baseUrl = 'https://reqres.in/api/users';
 
@@ -34,7 +34,7 @@ export class HttpService {
     return this.http.patch(`${baseUrl}/${id}`, body)
   }
 
-  registerUser(body: User) {
+  registerUser(body: UserLogin) {
     return this.http.post(`${baseUrl}/register`, body);
   }
 }

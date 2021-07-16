@@ -1,9 +1,9 @@
-export interface User {
+export interface UserLogin {
   email: string,
   password: string
 }
 
-export interface Worker {
+export interface User {
   id: number,
   email: string,
   first_name: string,

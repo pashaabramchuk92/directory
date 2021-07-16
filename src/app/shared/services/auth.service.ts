@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
-import { User } from "../interfaces";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {tap} from "rxjs/operators";
+import { UserLogin } from "../interfaces";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { tap } from "rxjs/operators";
 
 const baseUrl = 'https://reqres.in/api';
 
@@ -15,7 +15,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(user: User): Observable<any> {
+  login(user: UserLogin): Observable<any> {
     return this.http.post(`${baseUrl}/login`, user)
       .pipe(tap(this.setToken))
   }

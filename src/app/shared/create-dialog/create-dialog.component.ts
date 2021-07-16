@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {HttpService} from "../services/http.service";
-import {User, UserBody} from "../interfaces";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { HttpService } from "../services/http.service";
+import { UserBody } from "../interfaces";
 
 @Component({
   selector: 'app-modal-dialog',

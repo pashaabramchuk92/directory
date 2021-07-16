@@ -3,7 +3,7 @@ import {PageEvent} from '@angular/material/paginator';
 import {MatDialog} from "@angular/material/dialog";
 
 import {HttpService} from "../shared/services/http.service";
-import { Worker } from "../shared/interfaces";
+import { User } from "../shared/interfaces";
 import {CreateDialogComponent} from "../shared/create-dialog/create-dialog.component";
 
 @Component({
@@ -15,7 +15,7 @@ export class MainPageComponent implements OnInit {
 
   title: string = 'Справочник сотрудников'
 
-  workers: Worker[] | undefined;
+  users: User[] | undefined;
 
   length: number = 0;
   pageSize: number = 0;
@@ -31,7 +31,7 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
     this.httpService.getWorkers(this.currPage + 1)
       .subscribe((response: any) => {
-        this.workers = response.data;
+        this.users = response.data;
         this.length = response.total;
         this.pageSize = response.per_page;
     });
@@ -46,7 +46,7 @@ export class MainPageComponent implements OnInit {
 
     this.httpService.getWorkers(this.currPage + 1)
       .subscribe((response: any) => {
-        this.workers = response.data;
+        this.users = response.data;
         this.loadNextPage = false;
       });
   }
