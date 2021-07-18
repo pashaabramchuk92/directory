@@ -1,0 +1,60 @@
+<h2>Редактирование профиля</h2>
+<div class="update-form">
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label for="name">Имя:</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        placeholder="Новое имя..."
+        formControlName="name"
+      >
+      <div
+        class="validator"
+        *ngIf="name && (name.touched || name.dirty)"
+      >
+        <small class="form-error">
+          {{name.errors ? 'Неправильно заполнено поле' : ''}}
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="job">Должность:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="job"
+        placeholder="Новая должность..."
+        formControlName="job"
+      >
+      <div
+        class="validator"
+        *ngIf="job && (job.touched || job.dirty)"
+      >
+        <small class="form-error">
+          {{job.errors ? 'Неправильно заполнено поле' : ''}}
+        </small>
+      </div>
+    </div>
+    <div>
+      <div class="form-group form-group-actions">
+        <button
+          mat-flat-button
+          color="primary"
+          (click)="handleUpdate()"
+          [disabled]="loading || form.invalid"
+        >
+          Обновить
+        </button>
+        <button
+          color="warn"
+          mat-flat-button
+          (click)="close()"
+        >
+          Закрыть
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,9 @@
+<a routerLink="{{ user?.id }}" class="user">
+  <h3 class="user__name">
+    {{ user?.first_name }} {{ user?.last_name }}
+  </h3>
+  <p>{{ user?.email }}</p>
+  <div class="user__avatar">
+    <img src="{{ user?.avatar }}" alt="">
+  </div>
+</a>

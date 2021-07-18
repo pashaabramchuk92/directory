@@ -1,0 +1,51 @@
+<h2>Войти</h2>
+<form class="form" [formGroup]="form">
+  <div class="form-group">
+    <label for="email">Почта:</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      placeholder="Введите почту..."
+      formControlName="email"
+    >
+    <div
+      class="form-validator"
+      *ngIf="email && (email.touched || email.dirty)"
+    >
+      <small class="form-error">
+        {{ email.errors?.email ? 'Неправильный формат почты' : null }}
+        {{ email.errors?.required ? 'Почта обязательна' : null }}
+      </small>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Пароль:</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      placeholder="Введите пароль..."
+      formControlName="password"
+    >
+    <div
+      class="form-validator"
+      *ngIf="password && (password.touched || password.dirty)"
+    >
+      <small class="form-error">
+        {{ password.errors?.required ? 'Пароль обязателен' : null }}
+      </small>
+    </div>
+  </div>
+  <div class="form-group">
+    <button
+      type="submit"
+      mat-flat-button
+      color="primary"
+      (click)="submit()"
+      [disabled]="loading || form.invalid"
+    >
+      Войти
+    </button>
+  </div>
+</form>

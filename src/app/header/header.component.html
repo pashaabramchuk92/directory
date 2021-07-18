@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+  <div class="container">
+    <nav class="menu">
+      <ul class="menu__list">
+        <li class="menu__item">
+          <a routerLink="/">Главная</a>
+        </li>
+        <div class="wrapper">
+          <li class="menu__item" *ngIf="!isAuth()">
+            <a routerLink="auth/">Войти</a>
+          </li>
+          <li class="menu__item" *ngIf="!isAuth()">
+            <a routerLink="auth/register">Регистрация</a>
+          </li>
+          <li class="menu__item" *ngIf="isAuth()">
+            <a
+              routerLink="auth/"
+              (click)="logout()"
+            >
+              Выйти
+            </a>
+          </li>
+        </div>
+      </ul>
+    </nav>
+  </div>
+</mat-toolbar>

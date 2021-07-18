@@ -1,0 +1,41 @@
+<h1>{{ title }}</h1>
+
+<mat-spinner *ngIf="!users" class="pre-loader"></mat-spinner>
+
+<button
+  mat-flat-button
+  color="primary"
+  (click)="openModal()"
+  *ngIf="users"
+>
+  Добавить нового сотрудника
+</button>
+
+<mat-list role="list">
+  <app-user-item
+    *ngFor="let user of users"
+    [user]="user"
+    class="user"
+  ></app-user-item>
+</mat-list>
+
+<div class="paginator">
+  <mat-spinner
+    diameter="25"
+    color="warn"
+    *ngIf="loading"
+  ></mat-spinner>
+  <mat-paginator
+    (page)="handlePageEvent($event)"
+    [length]="length"
+    [pageSize]="pageSize"
+    [hidePageSize]="true"
+    *ngIf="users"
+  ></mat-paginator>
+</div>
+
+
+
+
+
+

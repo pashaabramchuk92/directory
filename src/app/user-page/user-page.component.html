@@ -1,0 +1,37 @@
+<div *ngIf="preloader" class="pre-loader">
+  <mat-spinner></mat-spinner>
+</div>
+
+<h1 *ngIf="!preloader">{{ user?.first_name }} {{ user?.last_name }} card</h1>
+<div class="wrapper" *ngIf="!preloader">
+  <div class="user-card">
+    <div class="user-avatar">
+      <img src="{{ user?.avatar }}" alt="{{ user?.first_name }}">
+    </div>
+    <div class="user-info">
+      <p class="name">{{ user?.first_name }} {{ user?.last_name }}</p>
+      <p class="email">{{ user?.email }}</p>
+    </div>
+  </div>
+
+  <div class="actions" >
+    <button
+      mat-flat-button
+      color="primary"
+      routerLink="editing"
+      (click)="handleClick()"
+      [disabled]="loading"
+    >
+      Редактировать
+    </button>
+    <button
+      mat-flat-button
+      color="warn"
+      (click)="handleDelete()"
+      [disabled]="loading"
+    >
+      Удалить
+    </button>
+  </div>
+</div>
+<router-outlet></router-outlet>

@@ -1,0 +1,45 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  & .user-card {
+    margin-top: 2rem;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & .user-info {
+      font-size: 1.25rem;
+      text-align: center;
+    }
+    & .user-avatar {
+      width: 130px;
+      height: 130px;
+      & img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  & .actions {
+    margin-top: 1rem;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 576px) {
+  .wrapper {
+    & .user-card {
+      width: 90%;
+      & .user-info {
+        font-size: .9rem;
+      }
+    }
+    & .actions {
+      width: 90%;
+    }
+  }
+}
+
